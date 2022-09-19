@@ -7,13 +7,19 @@ using std::cin;
 using std::cerr;
 using std::endl;
 
+enum Temperature {FREEZING, COLD, WARM, HOT};
+
+Temperature GetTemperature(int magic, int guess, int max);
+
 int main() {
 //    cout << RAND_MAX << endl;
     srand(time(0));
-    int magic, guess, cont = 1;
+    int magic, guess, cont = 1, max;
 
     while (cont == 1){
-        magic = rand() % 10 + 1;
+        cout << "Up to what number you wanna guess? ";
+        cin >> max;
+        magic = rand() % max + 1;
         cerr << magic << endl;
         cout << "Please Guess a number" << endl;
         for (int curTry = 0; curTry < 3; ++curTry) {
