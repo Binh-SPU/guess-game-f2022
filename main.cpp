@@ -14,7 +14,8 @@ Temperature GetTemperature(int magic, int guess, int max);
 int main() {
 //    cout << RAND_MAX << endl;
     srand(time(0));
-    int magic, guess, cont = 1, max;
+    int magic, guess, cont = 1, max, difference;
+    double percentage;
 
     while (cont == 1){
         cout << "Up to what number you wanna guess? ";
@@ -30,6 +31,20 @@ int main() {
                 break;
             }else if (curTry < 2){
                 cout << "Try again!" << endl;
+                difference = magic - guess;
+                percentage = static_cast<double>(abs(difference)) / max;
+                if (percentage > 0.75) {
+                    cout << "Freeze" << endl;
+                }
+                else if (percentage > 0.5) {
+                    cout << "Cold" << endl;
+                }
+                else if (percentage > 0.25) {
+                    cout << "Warm" << endl;
+                }
+                else {
+                    cout << "Hot" << endl;
+                }
             }
         }
         if (guess != magic){
@@ -37,6 +52,7 @@ int main() {
         }
         cout << "Wanna go again? [0 for no]";
         cin >> cont;
+
     }
 
     return 0;
